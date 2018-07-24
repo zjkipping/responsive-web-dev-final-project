@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FirebaseApiService } from '../firebase-api.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(public api: FirebaseApiService) { }
 }
