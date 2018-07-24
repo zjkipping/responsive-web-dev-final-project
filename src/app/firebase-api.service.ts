@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+
+import { Comment, Product } from './types';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseApiService {
-  products: Observable<any[]>; // makes interfaces for these two types
-  comments: Observable<any[]>;
-  private productsCollection: AngularFirestoreCollection<any>;
-  private commentsCollection: AngularFirestoreCollection<any>;
+  products: Observable<Product[]>;
+  comments: Observable<Comment[]>;
+  private productsCollection: AngularFirestoreCollection<Product[]>;
+  private commentsCollection: AngularFirestoreCollection<Comment[]>;
 
   constructor(private db: AngularFirestore) {
     this.productsCollection = this.db.collection('products');
