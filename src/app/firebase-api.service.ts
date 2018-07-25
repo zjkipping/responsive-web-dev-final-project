@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap} from 'rxjs/operators';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 import { Comment, Product, User, PrivilegeLevel, Rating } from './types';
 import { CartStateService } from './cart-state.service';

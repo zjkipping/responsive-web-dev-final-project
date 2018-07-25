@@ -2,3 +2,36 @@
   margin-top: 20px;
   margin-bottom: 75px;
 }
+
+.user-photo {
+  height: 48px;
+  width: 48px;
+  border-radius: 25px;
+}
+
+.user-name {
+  font-size: 18px;
+  vertical-align: bottom;
+}
+
+.comment-info {
+  border-bottom: 2px solid white;
+}
+
+.comment-container {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.comment-body {
+  padding: 0 15px;
+}
+
+.comments-list {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+}

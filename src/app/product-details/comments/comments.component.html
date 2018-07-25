@@ -1,4 +1,4 @@
-<div class="row mt-4" *ngIf="comments">
+<div class="row mt-2" *ngIf="comments">
   <div class="col-12">
     <form class="form-container" *ngIf="user" [formGroup]="commentForm" (ngSubmit)="submit($event)">
       <div class="form-group">
@@ -13,17 +13,16 @@
       </div>
     </form>
     <h2>Comments</h2>
-    <ul class="list-group mt-2">
-      <li class="list-group-item mt-3 mb-3" *ngFor="let comment of comments;">
-        <div *ngIf="getUser(comment); let c_user">
-          <div class="row">
-            <div class="col-6"></div>
-            <div class="col-6">
-              <p>{{c_user | json}}</p>
-            </div>
+    <div class="comments-list mt-2">
+      <div class="mt-2 mb-2" *ngFor="let comment of comments;">
+        <div class="text-white bg-primary comment-container" *ngIf="getUser(comment); let c_user">
+          <div class="comment-info pb-2">
+            <span><img class="user-photo" [src]="c_user.photoURL"></span>
+            <span class="user-name ml-2">{{c_user.displayName}} ({{comment.date | date:'short'}})</span>
           </div>
+          <p class="mt-3 comment-body">{{comment.text}}</p>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </div>
