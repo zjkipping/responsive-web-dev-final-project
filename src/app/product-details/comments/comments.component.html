@@ -1,0 +1,29 @@
+<div class="row mt-4" *ngIf="comments">
+  <div class="col-12">
+    <form class="form-container" *ngIf="user" [formGroup]="commentForm" (ngSubmit)="submit($event)">
+      <div class="form-group">
+        <label for="text">Leave A Comment</label>
+        <textarea class="form-control" id="text" type="text" formControlName="text"></textarea>
+        <div class="text-danger" *ngIf="commentForm.get('text')?.hasError('required') && commentForm.get('text')?.touched">
+          Please enter in some text
+        </div>
+      </div>
+      <div class="float-right mb-4">
+        <button class="btn btn-success btn-md">Post Comment</button>
+      </div>
+    </form>
+    <h2>Comments</h2>
+    <ul class="list-group mt-2">
+      <li class="list-group-item mt-3 mb-3" *ngFor="let comment of comments;">
+        <div *ngIf="getUser(comment); let c_user">
+          <div class="row">
+            <div class="col-6"></div>
+            <div class="col-6">
+              <p>{{c_user | json}}</p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

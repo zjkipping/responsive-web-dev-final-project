@@ -35,6 +35,7 @@ export class NavbarComponent {
   }
 
   login() {
+    this.api.setRedirectRoute();
     this.api.googleLogin();
   }
 }

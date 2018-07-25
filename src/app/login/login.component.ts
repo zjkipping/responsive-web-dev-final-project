@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FirebaseApiService } from '../firebase-api.service';
-import { FormBuilder, FormGroup, Validators } from '../../../node_modules/@angular/forms';
 
 @Component({
   selector: 'app-login',

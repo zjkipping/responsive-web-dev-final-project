@@ -21,7 +21,7 @@ export interface Comment {
   productID: string;
   userID: string;
   text: string;
-  date: string;
+  date: number;
 }
 
 export interface User {

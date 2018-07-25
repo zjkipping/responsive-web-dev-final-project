@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { FirebaseApiService } from './firebase-api.service';
 import { CartStateService } from './cart-state.service';
-import { map } from '../../node_modules/rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',

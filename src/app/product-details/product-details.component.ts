@@ -18,16 +18,17 @@ export class ProductDetailsComponent {
   rating: Observable<number>;
   rated: Observable<boolean>;
   user: Observable<User>;
+  users: Observable<User[]>;
 
   constructor(private api: FirebaseApiService, private cs: CartStateService, private route: ActivatedRoute) {
-    this.comments = combineLatest(this.route.params, this.api.comments, (params, c) => ({ params, comments: c })).pipe(
-      map(streams => {
-        return streams.comments.filter(c => c.userID === streams.params['id']);
-      })
-    );
     this.product = this.route.params.pipe(
       switchMap(params => {
         return this.api.getProductDetails(params['id']);
+      })
+    );
+    this.comments = combineLatest(this.product, this.api.comments, (product, c) => ({ product, comments: c })).pipe(
+      map(streams => {
+        return streams.comments.filter(c => c.productID === streams.product.uid);
       })
     );
     this.rating = this.product.pipe(map(product => {
@@ -40,10 +41,14 @@ export class ProductDetailsComponent {
     }));
     this.rated = combineLatest(this.api.user, this.product, (user, product) => ({ user, ratings: product.ratings })).pipe(
       map(streams => {
-        return !!streams.ratings.find(r => r.userID === streams.user.uid);
+        if (streams.user) {
+          return !!streams.ratings.find(r => r.userID === streams.user.uid);
+        }
+        return false;
       })
     );
     this.user = this.api.user;
+    this.users = this.api.users;
   }
 
   rateProduct(obj: { rating: Rating, product: Product }) {
@@ -52,5 +57,9 @@ export class ProductDetailsComponent {
 
   addToCart(product: Product) {
     this.cs.addProduct(product);
+  }
+
+  postComment(comment: Comment) {
+    this.api.postComment(comment);
   }
 }

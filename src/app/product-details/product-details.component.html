@@ -1,9 +1,15 @@
 <app-details
   [product]="product | async"
-  [comments]="comments | async"
   [rating]="rating | async"
   [rated]="rated | async"
   [user]="user | async"
   (rate)="rateProduct($event)"
   (addToCart)="addToCart($event)"
 ></app-details>
+<app-comments
+  [comments]="comments | async"
+  [user]="user | async"
+  [users]="users | async"
+  [productID]="(product | async)?.uid"
+  (commentPost)="postComment($event)"
+></app-comments>
