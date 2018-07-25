@@ -1,6 +1,6 @@
-<nav class="zjk-nav">
+<nav class="zjk-nav bg-primary">
   <div class="zjk-nav-menu">
-    <div class="zjk-brand"><a>Firebase Webstore Application</a></div>
+    <div class="zjk-brand"><a>One Stop Cheese Shop</a></div>
     <div class="zjk-nav-menu-toggle" (click)="toggle = !toggle"><a>&#9776;</a></div>
   </div>
   <div class="zjk-nav-container" *ngIf="toggle || !mobile">
@@ -9,9 +9,10 @@
       <div class="zjk-nav-item"><a routerLink="/products" routerLinkActive="active">Products</a></div>
     </div>
     <div class="zjk-right">
-      <div class="zjk-nav-item" *ngIf="loggedIn"><a routerLink="/cart" routerLinkActive="active">Cart(0)</a></div>
-      <div class="zjk-nav-item" *ngIf="loggedIn"><a (click)="logout()">Logout</a></div>
-      <div class="zjk-nav-item" *ngIf="!loggedIn"><a (click)="login()">Login</a></div>
+        <div class="zjk-nav-item" *ngIf="user && user.level === 1"><a routerLink="/admin" routerLinkActive="active">Admin</a></div>
+      <div class="zjk-nav-item" *ngIf="user"><a routerLink="/cart" routerLinkActive="active">Cart({{cartCount}})</a></div>
+      <div class="zjk-nav-item" *ngIf="user"><a (click)="logout()">Logout</a></div>
+      <div class="zjk-nav-item" *ngIf="!user"><a routerLink="/login">Login</a></div>
     </div>
   </div>
 </nav>

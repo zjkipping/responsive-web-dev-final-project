@@ -1,7 +1,10 @@
-<p>
-  products-list works!
-</p>
-
-<p>
-  {{products | json}}
-</p>
+<div class="row mt-2">
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4" *ngFor="let product of products">
+    <div class="card bg-primary full-height pointer" [routerLink]="'/products/' + product.uid">
+      <img class="card-img-top max-height" [src]="product.image" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">{{product.name}} - {{product.price | currency : 'USD' : 'symbol'}}/lb</p>
+      </div>
+    </div>
+  </div>
+</div>

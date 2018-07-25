@@ -1,0 +1,22 @@
+.product-name {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.rating {
+  font-size: 24px;
+}
+
+.star {
+  padding: 0 5px;
+}
+
+.filled-star {
+  color: yellow;
+}
+
+.stars-container {
+  border-radius: 5px;
+  padding: 5px;
+}

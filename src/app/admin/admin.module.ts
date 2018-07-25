@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CheckoutRoutingModule } from './checkout-routing.module';
-import { CheckoutComponent } from './checkout.component';
+import { AdminRoutingModule } from './admin-routing.module';
+import { AdminComponent } from './admin.component';
 import { ReactiveFormsModule } from '../../../node_modules/@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    CheckoutRoutingModule,
+    AdminRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [CheckoutComponent]
+  declarations: [
+    AdminComponent
+  ]
 })
-export class CheckoutModule { }
+export class AdminModule { }

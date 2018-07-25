@@ -3,11 +3,36 @@ export interface Product {
   description: string;
   image: string;
   price: number;
-  ratings: number[]
+  ratings: Rating[];
+  uid: string;
+}
+
+export interface CartItem {
+  product: Product;
+  count: number;
+}
+
+export interface Rating {
+  value: number;
+  userID: string;
 }
 
 export interface Comment {
-  user: string;
-  date: string;
+  productID: string;
+  userID: string;
   text: string;
+  date: string;
+}
+
+export interface User {
+  uid: string;
+  email: string;
+  level: PrivilegeLevel;
+  photoURL?: string;
+  displayName?: string;
+}
+
+export enum PrivilegeLevel {
+  General,
+  Admin
 }

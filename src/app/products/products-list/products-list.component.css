@@ -1,0 +1,11 @@
+.full-height {
+  height: 100%;
+}
+
+.max-height {
+  height: 250px;
+}
+
+.card {
+  color: white;
+}

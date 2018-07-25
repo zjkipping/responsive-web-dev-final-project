@@ -9,14 +9,19 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AuthGuard } from './auth-guard.service';
+import { LoginGuard } from './login-guard.service';
+import { AdminGuard } from './admin-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomeModule' },
   { path: 'products', loadChildren: './products/products.module#ProductsModule' },
   { path: 'products/:id', loadChildren: './product-details/product-details.module#ProductDetailsModule' },
-  { path: 'cart', loadChildren: './cart/cart.module#CartModule' },
-  { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutModule' }
+  { path: 'cart', loadChildren: './cart/cart.module#CartModule', canActivate: [AuthGuard] },
+  { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutModule', canActivate: [AuthGuard] },
+  { path: 'login', loadChildren: './login/login.module#LoginModule', canActivate: [LoginGuard] },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [AdminGuard] }
 ];
 
 @NgModule({

@@ -1,3 +1,7 @@
-<p>
-  cart works!
-</p>
+<app-cart-table
+  [cart]="cs.cart | async"
+  [totalPrice]="totalPrice | async"
+  (add)="cs.addItem($event)"
+  (subtract)="cs.subtractItem($event)"
+  (remove)="cs.removeItem($event)"
+></app-cart-table>

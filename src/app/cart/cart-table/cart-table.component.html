@@ -1,0 +1,30 @@
+<ng-container *ngIf="cart.length > 0">  
+  <span class="total-price mt-4 float-left">Total Amount: {{totalPrice | currency : 'USD' : 'symbol'}}</span>
+  <button class="btn btn-success btn-md checkout-button mt-4 float-right" routerLink="/checkout">Checkout</button>
+  <table class="table mt-4">
+    <thead class="bg-primary">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Count</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart">
+        <td>{{item.product.name}}</td>
+        <td>{{item.product.price}}</td>
+        <td>{{item.count}}</td>
+        <td>
+          <div class="btn-group btn-group-sm" role="group" >
+            <button type="button" class="btn btn-success" (click)="add.emit(item)">+</button>
+            <button type="button" class="btn btn-danger" (click)="subtract.emit(item)">−</button>
+          </div>
+          <button type="button" class="btn btn-danger btn-sm ml-3" (click)="remove.emit(item)">Remove</button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<p class="mt-4 text-center" *ngIf="cart.length === 0">Your cart is empty! Add a product to your cart and come back.</p>

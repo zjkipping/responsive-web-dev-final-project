@@ -1,4 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
+
+import { FirebaseApiService } from '../firebase-api.service';
+import { User, CartItem } from '../types';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +9,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  @Input() user: User;
+  @Input() cartCount: number;
+
   loggedIn = true;
   mobile: boolean;
   toggle = false;
@@ -20,15 +26,15 @@ export class NavbarComponent {
     }
   }
 
-  constructor() {
+  constructor(private api: FirebaseApiService) {
     this.mobile = window.innerWidth > 700 ? false : true;
   }
 
   logout() {
-    this.loggedIn = false;
+    this.api.signOut();
   }
 
   login() {
-    this.loggedIn = true;
+    this.api.googleLogin();
   }
 }

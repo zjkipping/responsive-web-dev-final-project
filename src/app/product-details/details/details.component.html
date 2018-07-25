@@ -1,0 +1,22 @@
+<div class="row mt-2" *ngIf="product">
+  <div class="col-12 col-md-5 mt-4">
+    <img class="img-fluid" [src]="product.image">
+  </div>
+  <div class="col-12 col-md-7 mt-4">
+    <span class="product-name">{{product.name}} - {{product.price | currency : 'USD' : 'symbol'}}/lb</span>
+    <button *ngIf="user" class="mt-2 float-right btn btn-primary btn-md" (click)="addToCart.emit(product)">Add To Cart</button>
+    <div class="mt-2 rating"> Rating: 
+      <span class="stars-container bg-primary">
+        <ng-container *ngFor="let x of stars">
+          <span class="star" (click)="rateClick(x)" [class.pointer]="!rated && user" [class.filled-star]="rating >= x">★</span>
+        </ng-container>
+      </span>
+    </div>
+    <p class="mt-4">{{product.description}}</p>
+  </div>
+</div>
+<div class="row mt-4" *ngIf="comments">
+  <div class="col-12">
+
+  </div>
+</div>

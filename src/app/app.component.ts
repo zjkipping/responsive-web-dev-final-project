@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+
+import { FirebaseApiService } from './firebase-api.service';
+import { CartStateService } from './cart-state.service';
+import { map } from '../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +11,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+  cartCount: Observable<number>;
+
+  constructor(public api: FirebaseApiService, cs: CartStateService) {
+    this.cartCount = cs.cart.pipe(map(cart => {
+      let count = 0;
+      cart.forEach(i => count += i.count);
+      return count;
+    }));
+  }
 }

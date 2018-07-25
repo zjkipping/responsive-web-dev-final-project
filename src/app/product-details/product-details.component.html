@@ -1,3 +1,9 @@
-<p>
-  product-details works!
-</p>
+<app-details
+  [product]="product | async"
+  [comments]="comments | async"
+  [rating]="rating | async"
+  [rated]="rated | async"
+  [user]="user | async"
+  (rate)="rateProduct($event)"
+  (addToCart)="addToCart($event)"
+></app-details>
