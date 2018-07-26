@@ -8,7 +8,7 @@ export interface Product {
 }
 
 export interface CartItem {
-  product: Product;
+  productID: string;
   count: number;
 }
 
@@ -30,6 +30,7 @@ export interface User {
   level: PrivilegeLevel;
   photoURL?: string;
   displayName?: string;
+  cart?: CartItem[];
 }
 
 export enum PrivilegeLevel {

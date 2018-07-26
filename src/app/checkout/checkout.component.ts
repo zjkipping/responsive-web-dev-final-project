@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { CartStateService } from '../cart-state.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { FirebaseApiService } from '../firebase-api.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CheckoutComponent {
   checkoutForm: FormGroup;
 
-  constructor(private cs: CartStateService, private router: Router, fb: FormBuilder) {
+  constructor(private api: FirebaseApiService, private router: Router, fb: FormBuilder) {
     this.checkoutForm = fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -23,7 +23,7 @@ export class CheckoutComponent {
   checkOut() {
     if (this.checkoutForm.valid) {
       this.checkoutForm.reset();
-      this.cs.clearCart();
+      this.api.clearCart();
       this.router.navigate(['/home']);
     }
   }

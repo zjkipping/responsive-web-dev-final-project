@@ -5,7 +5,6 @@ import { switchMap, map } from 'rxjs/operators';
 
 import { FirebaseApiService } from '../firebase-api.service';
 import { Product, Comment, User, Rating } from '../types';
-import { CartStateService } from '../cart-state.service';
 
 @Component({
   selector: 'app-product-details',
@@ -20,7 +19,7 @@ export class ProductDetailsComponent {
   user: Observable<User>;
   users: Observable<User[]>;
 
-  constructor(private api: FirebaseApiService, private cs: CartStateService, private route: ActivatedRoute) {
+  constructor(private api: FirebaseApiService, private route: ActivatedRoute) {
     this.product = this.route.params.pipe(
       switchMap(params => {
         return this.api.getProductDetails(params['id']);
@@ -56,7 +55,7 @@ export class ProductDetailsComponent {
   }
 
   addToCart(product: Product) {
-    this.cs.addProduct(product);
+    this.api.addToCart(product.uid);
   }
 
   postComment(comment: Comment) {

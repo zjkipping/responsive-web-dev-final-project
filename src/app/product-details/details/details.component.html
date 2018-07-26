@@ -4,8 +4,9 @@
   </div>
   <div class="col-12 col-md-7 mt-4">
     <span class="product-name">{{product.name}} - {{product.price | currency : 'USD' : 'symbol'}}/lb</span>
-    <button *ngIf="user" class="mt-2 float-right btn btn-primary btn-md" (click)="addToCart.emit(product)">Add To Cart</button>
-    <div class="mt-2 rating"> Rating: 
+    <button *ngIf="user" class="cart-button mt-2 float-right btn btn-primary btn-md" (click)="addToCart.emit(product)">Add To Cart</button>
+    <div class="mt-2 rating">
+      <span class="rating-context">Rating: </span>
       <span class="stars-container bg-primary">
         <ng-container *ngFor="let x of stars">
           <span class="star" (click)="rateClick(x)" [class.pointer]="!rated && user" [class.filled-star]="rating >= x">★</span>

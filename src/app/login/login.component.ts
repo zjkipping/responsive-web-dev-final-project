@@ -10,6 +10,7 @@ import { FirebaseApiService } from '../firebase-api.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  error = '';
 
   constructor(private api: FirebaseApiService, fb: FormBuilder) {
     this.loginForm = fb.group({
@@ -19,10 +20,12 @@ export class LoginComponent {
   }
 
   loginAsAdmin() {
-    this.api.emailLogin(this.loginForm.value.email, this.loginForm.value.password);
+    if (this.loginForm.valid) {
+      this.api.emailLogin(this.loginForm.value.email, this.loginForm.value.password).then(e => this.error = e);
+    }
   }
 
   loginWithGoogle() {
-    this.api.googleLogin();
+    this.api.googleLogin().then(e => this.error = e);
   }
 }

@@ -20,3 +20,19 @@
   border-radius: 5px;
   padding: 5px;
 }
+
+@media screen and (max-width: 400px) {
+  .rating-context {
+    display: none;
+  }
+
+  .cart-button {
+    float: none;
+    clear: both;
+    display: inline-block;
+  }
+
+  .stars-container {
+    display: inline-block;
+  }
+}

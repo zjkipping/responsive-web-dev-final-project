@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { CartItem } from '../../types';
+import { CartItem, Product } from '../../types';
+import { FirebaseApiService } from '../../firebase-api.service';
 
 @Component({
   selector: 'app-cart-table',
@@ -8,12 +9,18 @@ import { CartItem } from '../../types';
   styleUrls: ['./cart-table.component.css']
 })
 export class CartTableComponent {
-  @Input() cart: CartItem[];
+  @Input() cart: CartItem[] = [];
+  @Input() products: Product[] = [];
   @Input() totalPrice = 0;
-  @Output() add = new EventEmitter<CartItem>();
-  @Output() subtract = new EventEmitter<CartItem>();
-  @Output() remove = new EventEmitter<CartItem>();
+  @Output() add = new EventEmitter<string>();
+  @Output() subtract = new EventEmitter<string>();
+  @Output() remove = new EventEmitter<string>();
 
-  constructor() {}
+  constructor(api: FirebaseApiService) {}
 
+  getProduct(id: string) {
+    if (this.products) {
+      return this.products.find(p => p.uid === id);
+    }
+  }
 }

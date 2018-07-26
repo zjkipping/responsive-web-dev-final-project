@@ -1,7 +1,7 @@
 import { Component, HostListener, Input } from '@angular/core';
 
 import { FirebaseApiService } from '../firebase-api.service';
-import { User, CartItem } from '../types';
+import { User } from '../types';
 
 @Component({
   selector: 'app-navbar',

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { FirebaseApiService } from '../firebase-api.service';
 
 @Component({
@@ -27,5 +28,6 @@ export class AdminComponent {
       this.newProductForm.value.image,
       this.newProductForm.value.price
     );
+    this.router.navigate(['/products']);
   }
 }
