@@ -93,15 +93,16 @@ export class FirebaseApiService {
   }
 
   createNewProduct(name: string, description: string, image: string, price: number) {
+    const id = this.afs.createId();
     const newProduct: Product = {
       name,
       description,
       image,
       price,
       ratings: [],
-      uid: this.afs.createId()
+      uid: id
     };
-    this.afs.collection('/products').add(newProduct);
+    this.afs.collection('/products').doc(id).set(newProduct);
   }
 
   postComment(comment: Comment) {
