@@ -30,3 +30,9 @@
 .form-group {
   color: white;
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .google-image {
+    width: 200px;
+  }
+}
